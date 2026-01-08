@@ -23,7 +23,13 @@ pipeline {
         stage('Run Tests') {
             steps {
                 dir('C:\\Users\\Acer\\GIT Traning\\jenkins-site') {
-                    // Запускаем тесты
+                    // 1. Запускаем сервер в фоновом режиме (команда 'start' откроет новое окно)
+                    bat 'start /B npm start' 
+                    
+                    // 2. Даем серверу 5 секунд, чтобы он успел "проснуться"
+                    sleep 5
+                    
+                    // 3. Запускаем тесты
                     bat 'npm test'
                 }
             }
